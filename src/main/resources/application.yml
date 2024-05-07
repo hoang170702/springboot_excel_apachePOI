@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: spring
+  datasource:
+    username: hr
+    password: hr
+    url: jdbc:oracle:thin:@localhost:1521:orcl
+    driver-class-name: oracle.jdbc.OracleDriver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
