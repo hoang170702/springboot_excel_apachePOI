@@ -17,6 +17,10 @@ import java.util.List;
 public class DataController {
     @Autowired
     private DataService dataService;
+
+    @Autowired
+    private ExcelService excelService;
+
     @PostMapping("/save-data-to-excel")
     public ResponseEntity<String> readExcel() {
         try {
@@ -33,6 +37,16 @@ public class DataController {
             return ResponseEntity.status(HttpStatus.OK).body(this.dataService.getAllDatas());
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    @GetMapping("/export-excel")
+    public ResponseEntity<String> exportExcel() {
+        try {
+            this.excelService.importDataFromDbToExcel("D:\\test");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Export data success");
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 }
